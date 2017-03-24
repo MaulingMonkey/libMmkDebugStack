@@ -1,0 +1,63 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libMmkDebugStack", "libMmkDebugStack\libMmkDebugStack.vcxproj", "{19672FA1-37B3-4DE8-B53E-1B92AE27EEEC}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mmkDebugStackTest", "mmkDebugStackTest\mmkDebugStackTest.vcxproj", "{A4BE36F8-6022-4302-A663-3F2960B90050}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configuration", "{2826D75F-434F-4858-9F9E-CBE78244BAA1}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		libMmkDebugStack\libMmkDebugStack.props = libMmkDebugStack\libMmkDebugStack.props
+		Makefile = Makefile
+		test.props = test.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{012D1E58-7DD5-4793-9955-07DCDB2AB8F1}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		LICENSE.txt = LICENSE.txt
+		Readme.md = Readme.md
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mmkReadmeExampleTest", "mmkReadmeExampleTest\mmkReadmeExampleTest.vcxproj", "{7AC7D5FC-87AE-4D13-82C2-392A9C95516B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{19672FA1-37B3-4DE8-B53E-1B92AE27EEEC}.Debug|x64.ActiveCfg = Debug|x64
+		{19672FA1-37B3-4DE8-B53E-1B92AE27EEEC}.Debug|x64.Build.0 = Debug|x64
+		{19672FA1-37B3-4DE8-B53E-1B92AE27EEEC}.Debug|x86.ActiveCfg = Debug|Win32
+		{19672FA1-37B3-4DE8-B53E-1B92AE27EEEC}.Debug|x86.Build.0 = Debug|Win32
+		{19672FA1-37B3-4DE8-B53E-1B92AE27EEEC}.Release|x64.ActiveCfg = Release|x64
+		{19672FA1-37B3-4DE8-B53E-1B92AE27EEEC}.Release|x64.Build.0 = Release|x64
+		{19672FA1-37B3-4DE8-B53E-1B92AE27EEEC}.Release|x86.ActiveCfg = Release|Win32
+		{19672FA1-37B3-4DE8-B53E-1B92AE27EEEC}.Release|x86.Build.0 = Release|Win32
+		{A4BE36F8-6022-4302-A663-3F2960B90050}.Debug|x64.ActiveCfg = Debug|x64
+		{A4BE36F8-6022-4302-A663-3F2960B90050}.Debug|x64.Build.0 = Debug|x64
+		{A4BE36F8-6022-4302-A663-3F2960B90050}.Debug|x86.ActiveCfg = Debug|Win32
+		{A4BE36F8-6022-4302-A663-3F2960B90050}.Debug|x86.Build.0 = Debug|Win32
+		{A4BE36F8-6022-4302-A663-3F2960B90050}.Release|x64.ActiveCfg = Release|x64
+		{A4BE36F8-6022-4302-A663-3F2960B90050}.Release|x64.Build.0 = Release|x64
+		{A4BE36F8-6022-4302-A663-3F2960B90050}.Release|x86.ActiveCfg = Release|Win32
+		{A4BE36F8-6022-4302-A663-3F2960B90050}.Release|x86.Build.0 = Release|Win32
+		{7AC7D5FC-87AE-4D13-82C2-392A9C95516B}.Debug|x64.ActiveCfg = Debug|x64
+		{7AC7D5FC-87AE-4D13-82C2-392A9C95516B}.Debug|x64.Build.0 = Debug|x64
+		{7AC7D5FC-87AE-4D13-82C2-392A9C95516B}.Debug|x86.ActiveCfg = Debug|Win32
+		{7AC7D5FC-87AE-4D13-82C2-392A9C95516B}.Debug|x86.Build.0 = Debug|Win32
+		{7AC7D5FC-87AE-4D13-82C2-392A9C95516B}.Release|x64.ActiveCfg = Release|x64
+		{7AC7D5FC-87AE-4D13-82C2-392A9C95516B}.Release|x64.Build.0 = Release|x64
+		{7AC7D5FC-87AE-4D13-82C2-392A9C95516B}.Release|x86.ActiveCfg = Release|Win32
+		{7AC7D5FC-87AE-4D13-82C2-392A9C95516B}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

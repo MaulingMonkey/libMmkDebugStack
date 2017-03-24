@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include/mmk/debug">
+      <UniqueIdentifier>{65805651-10c9-41e5-9335-25d48f7f4264}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="build/native">
+      <UniqueIdentifier>{ee9d3b47-f71b-4b7f-9a1d-472cc713d6fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src %28DbgHelp specific%29">
+      <UniqueIdentifier>{283e21f4-3928-4eb8-814b-ef34feeafba4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{833c122a-2e4d-41b0-be66-1daa31fd7b68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src %28Fallback%29">
+      <UniqueIdentifier>{7f6a3750-b4c6-43c4-a4cc-9d45ca5c8076}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\mmk\debug\stack.h">
+      <Filter>include/mmk/debug</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mmk\debug\stack.hpp">
+      <Filter>include/mmk/debug</Filter>
+    </ClInclude>
+    <ClInclude Include="src\assert.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dbgHelpContext.hpp">
+      <Filter>src %28DbgHelp specific%29</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="build\native\libMmkDebugStack.targets">
+      <Filter>build/native</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\lock_cpp11.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dbgHelpContext_baseType.cpp">
+      <Filter>src %28DbgHelp specific%29</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dbgHelpContext_onFrameVar.cpp">
+      <Filter>src %28DbgHelp specific%29</Filter>
+    </ClCompile>
+    <ClCompile Include="src\init_dbghelp.cpp">
+      <Filter>src %28DbgHelp specific%29</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stack_dbghelp.cpp">
+      <Filter>src %28DbgHelp specific%29</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stack_fallback.cpp">
+      <Filter>src %28Fallback%29</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
