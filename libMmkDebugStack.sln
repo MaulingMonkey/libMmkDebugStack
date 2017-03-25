@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configuration", "{2826D75F-434F-4858-9F9E-CBE78244BAA1}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		libMmkDebugStack.nuspec = libMmkDebugStack.nuspec
 		libMmkDebugStack\libMmkDebugStack.props = libMmkDebugStack\libMmkDebugStack.props
 		Makefile = Makefile
 		test.props = test.props

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package>
+	<metadata>
+		<id>libMmkDebugStack</id>
+		<version>0.0.0</version>
+		<authors>MaulingMonkey</authors>
+		<owners>MaulingMonkey</owners>
+		<licenseUrl>https://github.com/MaulingMonkey/libMmkDebugStack/blob/master/LICENSE.txt</licenseUrl>
+		<projectUrl>https://github.com/MaulingMonkey/libMmkDebugStack</projectUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>MaulingMonKey's debug callstack collection API.</description>
+		<releaseNotes>Initial test of nuget packaging process for C++ stuff.</releaseNotes>
+		<copyright>Copyright © MaulingMonkey 2017</copyright>
+		<tags>MaulingMonkey native debug callstack stack stacktrace trace dbghelp</tags>
+	</metadata>
+	<files>
+		<file src="libMmkDebugStack\build\**\*.*"   target="build"/>
+		<file src="libMmkDebugStack\include\**\*.*" target="include"/>
+	</files>
+</package>

@@ -7,4 +7,5 @@ Thumbs.db
 .vs/
 bin/
 obj/
+libMmkDebugStack/build/native/lib/
 
