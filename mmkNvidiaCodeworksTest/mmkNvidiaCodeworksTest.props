@@ -8,6 +8,8 @@
     <ClCompile>
       <CppLanguageStandard>gnu++11</CppLanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)\libMmkDebugStack\include;$(SolutionDir)\libMmkDebugStack\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Warnings>AllWarnings</Warnings>
+      <WarningsAsErrors>true</WarningsAsErrors>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)\libMmkDebugStack\build\native\lib\$(ArchAbi)\$(ToolchainIdentifier)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>

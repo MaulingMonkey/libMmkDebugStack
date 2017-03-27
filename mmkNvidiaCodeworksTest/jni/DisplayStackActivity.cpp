@@ -30,8 +30,8 @@
 
 
 
-extern "C" JNIEXPORT jstring JNICALL
-Java_com_maulingmonkey_debug_stack_nvidiaCodeworksTest_DisplayStackActivity_mmkDebugStackSearchPaths( JNIEnv* env, jobject thiz, jstring jElfDir)
+extern "C" JNIEXPORT void JNICALL
+Java_com_maulingmonkey_debug_stack_nvidiaCodeworksTest_DisplayStackActivity_mmkDebugStackSearchPaths( JNIEnv* env, jobject thiz, jstring jElfDir )
 {
 	const char* elfDir  = env->GetStringUTFChars(jElfDir,  NULL);
 	mmkDebugStackSearchPaths(&elfDir, 1);

@@ -45,14 +45,24 @@ namespace
 		const char*					funcHint;
 	};
 
+#ifdef __clang__
+	const _Unwind_Reason_Code urcError    = _URC_FOREIGN_EXCEPTION_CAUGHT;
+	const _Unwind_Reason_Code urcContinue = _URC_NO_REASON;
+	const _Unwind_Reason_Code urcEnd      = _URC_NORMAL_STOP;
+#else
+	const _Unwind_Reason_Code urcError    = _URC_FAILURE;
+	const _Unwind_Reason_Code urcContinue = _URC_NO_REASON;
+	const _Unwind_Reason_Code urcEnd      = _URC_OK;
+#endif
+
 	_Unwind_Reason_Code doUnwind(_Unwind_Context* uwContext, void* pOurContext)
 	{
-		if (!ZMMK_ASSERT(pOurContext, "Expected pOurContext")) return _URC_FAILURE;
-		if (!uwContext) return _URC_OK; // libunwind bug or terminal condition?
+		if (!ZMMK_ASSERT(pOurContext, "Expected pOurContext")) return urcError;
+		if (!uwContext) return urcEnd; // libunwind bug or terminal condition?
 		context& c = *static_cast<context*>(pOurContext);
 
-		if (c.framesToSkip > 0) { --c.framesToSkip; return _URC_NO_REASON; }
-		if (c.maxFrames <= 0) { return _URC_OK; } // Terminal completed
+		if (c.framesToSkip > 0) { --c.framesToSkip; return urcContinue; }
+		if (c.maxFrames <= 0) { return urcEnd; } // Terminal completed
 		--c.maxFrames;
 
 		const uintptr_t ip = _Unwind_GetIP(uwContext);
@@ -153,7 +163,7 @@ namespace
 			}
 		}
 
-		return (*c.onFunction)(c.userData, &f) ? _URC_NO_REASON : _URC_OK;
+		return (*c.onFunction)(c.userData, &f) ? urcContinue : urcEnd;
 	}
 }
 
