@@ -13,29 +13,26 @@
    limitations under the License.
 */
 
-#ifdef __GNUC__
-void lock_cpp11_exports_nothing() {} // Supress linker warning
+#ifndef __GNUC__
+void lock_pthreads_exports_nothing() {} // Supress linker warning
 #else
 
-
 #include <mmk/debug/stack.hpp>
-#include <mutex>
-
-// TODO: Win32 C++03 polyfill/fallback.
+#include <pthread.h>
 
 namespace
 {
-	std::mutex dbgHelpMutex;
+	pthread_mutex_t miscMutex;
 }
 
 void mmkDebugStackLock(void)
 {
-	dbgHelpMutex.lock();
+	pthread_mutex_lock(&miscMutex);
 }
 
 void mmkDebugStackUnlock(void)
 {
-	dbgHelpMutex.unlock();
+	pthread_mutex_unlock(&miscMutex);
 }
 
 #endif

@@ -99,11 +99,13 @@ void mmkDebugStackCurrentThread(
 #endif
 
 		stackFunction& func = c.function;
-		func.address	= const_cast<void*>(instruction);
-		func.name		= noFuncName;
-		func.file		= noFilename;
-		func.module		= noModule;
-		func.line		= 0;
+		func.functionBase = NULL;
+		func.address      = const_cast<void*>(instruction);
+		func.name         = noFuncName;
+		func.file         = noFilename;
+		func.moduleBase   = NULL;
+		func.module       = noModule;
+		func.line         = 0;
 
 		if (flags & mmkDebugStackResolveFuncName) {
 			const DWORD getSymInfoErr = SymFromAddr(c.process, reinterpret_cast<size_t>(instruction), 0, &c.functionDhSymbol.info) ? 0 : GetLastError();

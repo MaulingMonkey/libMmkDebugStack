@@ -13,8 +13,8 @@
    limitations under the License.
 */
 
-#if defined(MMK_DEBUG_STACK_USE_DBGHELP)
-void stack_fallback() {} // Supress linker warning
+#if defined(MMK_DEBUG_STACK_USE_DBGHELP) || defined(MMK_DEBUG_STACK_USE_UNWIND)
+void stack_fallback_exports_nothing() {} // Supress linker warning
 #else
 
 #include <mmk/debug/stack.hpp>

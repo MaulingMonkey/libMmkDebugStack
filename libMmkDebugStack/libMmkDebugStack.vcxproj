@@ -1,9 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|ARM-Android-NVIDIA">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM-Android-NVIDIA</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM-Android-NVIDIA">
+      <Configuration>Release</Configuration>
+      <Platform>ARM-Android-NVIDIA</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
@@ -23,19 +31,36 @@
     <ClInclude Include="include\mmk\debug\stack.hpp" />
     <ClInclude Include="src\assert.hpp" />
     <ClInclude Include="src\dbgHelpContext.hpp" />
+    <ClInclude Include="src\dwarf.debugLine.header.hpp" />
+    <ClInclude Include="src\dwarf.debugLine.reader.hpp" />
+    <ClInclude Include="src\dwarf.leb128.hpp" />
+    <ClInclude Include="src\dwarf.debugLine.opcodes.hpp" />
+    <ClInclude Include="src\elf.reader.hpp" />
+    <ClInclude Include="src\elf.types.hpp" />
+    <ClInclude Include="src\searchPaths.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="build\native\libMmkDebugStack.targets">
       <SubType>Designer</SubType>
     </None>
+    <None Include="libMmkDebugStack-MSVC.props" />
+    <None Include="libMmkDebugStack-nVidiaCodeWorks.props" />
+    <None Include="libMmkDebugStack.props" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\dbgHelpContext_onFrameVar.cpp" />
+    <ClCompile Include="src\dwarf.debugLine.header.cpp" />
+    <ClCompile Include="src\dwarf.leb128.cpp" />
     <ClCompile Include="src\init_dbghelp.cpp" />
+    <ClCompile Include="src\init_fallback.cpp" />
     <ClCompile Include="src\lock_cpp11.cpp" />
+    <ClCompile Include="src\lock_pthreads.cpp" />
+    <ClCompile Include="src\elf.reader.cpp" />
+    <ClCompile Include="src\searchPaths.cpp" />
     <ClCompile Include="src\stack_dbghelp.cpp" />
     <ClCompile Include="src\dbgHelpContext_baseType.cpp" />
     <ClCompile Include="src\stack_fallback.cpp" />
+    <ClCompile Include="src\stack_unwind.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{19672FA1-37B3-4DE8-B53E-1B92AE27EEEC}</ProjectGuid>
@@ -70,6 +95,15 @@
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|ARM-Android-NVIDIA'">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <AndroidStripLibrary>false</AndroidStripLibrary>
+    <NdkToolchainVersion>gcc-4.9</NdkToolchainVersion>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|ARM-Android-NVIDIA'">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <NdkToolchainVersion>gcc-4.9</NdkToolchainVersion>
+  </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
@@ -77,22 +111,27 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="libMmkDebugStack.props" />
+    <Import Project="libMmkDebugStack-MSVC.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="libMmkDebugStack.props" />
+    <Import Project="libMmkDebugStack-MSVC.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="libMmkDebugStack.props" />
+    <Import Project="libMmkDebugStack-MSVC.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="libMmkDebugStack.props" />
+    <Import Project="libMmkDebugStack-MSVC.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|ARM-Android-NVIDIA'">
+    <Import Project="libMmkDebugStack-nVidiaCodeWorks.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|ARM-Android-NVIDIA'">
+    <Import Project="libMmkDebugStack-nVidiaCodeWorks.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>

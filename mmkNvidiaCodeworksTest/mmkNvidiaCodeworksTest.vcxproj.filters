@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="jni">
+      <UniqueIdentifier>6745d362-1653-4985-8c1e-0eb39333989d</UniqueIdentifier>
+    </Filter>
+    <Filter Include="res">
+      <UniqueIdentifier>77a2ce05-a94a-49fd-bcda-38b8e7dc36a2</UniqueIdentifier>
+    </Filter>
+    <Filter Include="res\values">
+      <UniqueIdentifier>1e948045-b111-4c60-b47b-d09837cdeead</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src/com/maulingmonkey/debug/stack/nvidiaCodeworksTest">
+      <UniqueIdentifier>9ccd64ec-b816-433d-aeb6-13a999b5c952</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidBuild Include="AndroidManifest.xml" />
+    <AndroidBuild Include="res\values\strings.xml">
+      <Filter>res\values</Filter>
+    </AndroidBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <JCompile Include="src\com\maulingmonkey\debug\stack\nvidiaCodeworksTest\DisplayStackActivity.java">
+      <Filter>src/com/maulingmonkey/debug/stack/nvidiaCodeworksTest</Filter>
+    </JCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="jni\DisplayStackActivity.cpp">
+      <Filter>jni</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="mmkNvidiaCodeworksTest.props" />
+  </ItemGroup>
+</Project>

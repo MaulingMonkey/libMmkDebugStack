@@ -13,29 +13,20 @@
    limitations under the License.
 */
 
-#ifdef __GNUC__
-void lock_cpp11_exports_nothing() {} // Supress linker warning
+#if defined(MMK_DEBUG_STACK_USE_DBGHELP)
+void init_fallback_exports_nothing() {} // Supress linker warning
 #else
 
-
 #include <mmk/debug/stack.hpp>
-#include <mutex>
 
-// TODO: Win32 C++03 polyfill/fallback.
-
-namespace
+void mmkDebugStackInit(void)
 {
-	std::mutex dbgHelpMutex;
+	//MMK_DEBUG_STACK_LOCK_SCOPE();
+	//zmmkDebugStackInitNoLock();
 }
 
-void mmkDebugStackLock(void)
+void zmmkDebugStackInitNoLock(void)
 {
-	dbgHelpMutex.lock();
 }
 
-void mmkDebugStackUnlock(void)
-{
-	dbgHelpMutex.unlock();
-}
-
-#endif
+#endif /* def MMK_DEBUG_STACK_USE_DBGHELP */

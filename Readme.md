@@ -13,11 +13,12 @@ License: [Apache 2.0](LICENSE.txt)
 
 # Compatability
 
-| Tested OS    | Compiler    | Implementation |
-| ------------ | ----------- | -------------- |
-| Windows 7    | VS2015 u1   | DbgHelp        |
-| Ubuntu 16.10 | Clang 3.8.1 | Fallback       |
-| Ubuntu 16.10 | GCC 6.2.0   | Fallback       |
+| Tested OS    | Compiler    | Implementation              | Notes |
+| ------------ | ----------- | --------------------------- | ----- |
+| Windows 7    | VS2015 u1   | DbgHelp                     | |
+| Android 5.0  | GCC 4.9     | libunwind, elf/dwarf parser | Build and tested via nVidia Codeworks 1R4 on VS2015 u1 |
+| Ubuntu 16.10 | Clang 3.8.1 | Fallback                    | |
+| Ubuntu 16.10 | GCC 6.2.0   | Fallback                    | |
 
 Other C++11 capable platforms/compilers should at least be able to use the Fallback implementation, feel free to file an issue if they don't!
 
@@ -77,20 +78,23 @@ Trace:
     <unknown>(0): RtlInitializeExceptionChain @ 77C398D5
 ```
 
+More examples: [mmkDebugStackTest](mmkDebugStackTest/main.cpp), mmkNvidiaCodeworksTest ([java](mmkNvidiaCodeworksTest/src/com/maulingmonkey/debug/stack/nvidiaCodeworksTest/DisplayStackActivity.java), [c++](mmkNvidiaCodeworksTest/jni/DisplayStackActivity.cpp))
+
 # Installation
 
 ## NuGet
 <strike>Add [libMmkDebugStack](https://www.nuget.org/packages/libMmkDebugStack/) to your project via nuget.  Done!</strike>  **Soon(tm)**
 
-## From Source (Windows)
+## From Source (on Windows development machine)
 - Clone the repository
 - Use `libMmkDebugStack.sln` to build `libMmkDebugStack.lib` in the configurations/platforms of your choice.
 - Add `HAS_MMK_DEBUG_STACK` to your preprocessor definitions.
 - Add [`libMmkDebugStack\include\`](libMmkDebugStack/include/) to your #include paths.
-- Add `bin\$(PlatformTarget)\$(Configuration)\` to your library paths.
+- Add `build\native\lib\$(PlatformTarget)\$(Configuration)\` to your library paths (Windows).
+- Add `build\native\lib\$(ArchAbi)\$(ToolchainIdentifier)\$(Configuration)\` to your library paths (Android).
 - Add `libMmkDebugStack.lib` and `DbgHelp.lib` to your libraries list.
 
-## From Source (Linux)
+## From Source (on Linux development machine)
 - Clone the repository
 - Run make
 - Add `-DHAS_MMK_DEBUG_STACK` to your `CCFLAGS`
@@ -101,6 +105,6 @@ Trace:
 # TODO
 - Add option to use separate debugger process for stability / collecting stacks of foreign threads
 - Backport to C++03 for wider compatability
-- Properly port to Linux, OS X, iOS, Android
+- Properly port to Linux, OS X, iOS, <strike>Android</strike>
 - Port to Consoles, Handhelds, etc. (Blocker: Devkit access)
 - Add Windows CDB backend for possible stability improvements, multi-thread stacks, crash dump analysis, etc.

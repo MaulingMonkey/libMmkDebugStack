@@ -13,29 +13,14 @@
    limitations under the License.
 */
 
-#ifdef __GNUC__
-void lock_cpp11_exports_nothing() {} // Supress linker warning
-#else
+#ifndef ZMMK_IG_SRC_SEARCH_PATHS_HPP
+#define ZMMK_IG_SRC_SEARCH_PATHS_HPP
 
+#include <vector>
+#include <string>
 
-#include <mmk/debug/stack.hpp>
-#include <mutex>
+namespace mmk { namespace debug {
+	extern std::vector<std::string> stackSearchPaths;
+}} // namespace mmk::debug
 
-// TODO: Win32 C++03 polyfill/fallback.
-
-namespace
-{
-	std::mutex dbgHelpMutex;
-}
-
-void mmkDebugStackLock(void)
-{
-	dbgHelpMutex.lock();
-}
-
-void mmkDebugStackUnlock(void)
-{
-	dbgHelpMutex.unlock();
-}
-
-#endif
+#endif /* ndef ZMMK_IG_SRC_SEARCH_PATHS_HPP */

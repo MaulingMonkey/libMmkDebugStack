@@ -16,6 +16,8 @@
 #ifndef ZMMK_IG_DEBUG_STACK_H
 #define ZMMK_IG_DEBUG_STACK_H
 
+#include <stddef.h>
+
 /* Public   APIs start with e.g.  "MMK_DEBUG_STACK_",  "mmkDebugStack", or "mmk::debug::"
  * Internal APIs start with e.g. "ZMMK_DEBUG_STACK_", "zmmkDebugStack", or "mmk::debug::stackInternal::"
  */
@@ -50,6 +52,7 @@
  */
 ZMMK_DEBUG_STACK_API void  mmkDebugStackInit(void);
 ZMMK_DEBUG_STACK_API void zmmkDebugStackInitNoLock(void);
+ZMMK_DEBUG_STACK_API void  mmkDebugStackSearchPaths(const char** paths, size_t pathsCount);
 
 
 
@@ -66,7 +69,7 @@ ZMMK_DEBUG_STACK_API void mmkDebugStackUnlock(void);
 
 enum mmkDebugStackResolveFlags {
 	/* Misc. options */
-	mmkDebugStackResolveNullMissing  = (1u << 0),  /* Use null for unresolveable information, instead of empty/placeholder strings.  Presumably the caller wants to use their own empty/placeholder strings. */
+	mmkDebugStackResolveNullMissing  = (1u << 0),  /* Use null (const char*)s for unresolveable information, instead of empty/placeholder strings.  Presumably the caller wants to use their own empty/placeholder strings. */
 
 	/* ResolveFunc - Controls how mmkDebugStackFunction is populated */
 	mmkDebugStackResolveFuncName     = (1u << 1),  /* Populate mmkDebugStackFunction::name   */
@@ -87,11 +90,13 @@ enum mmkDebugStackResolveFlags {
 };
 
 typedef struct {
-	const void*     address;    /* May be null (for placeholder psuedo-frames, and e.g. the fallback path where the caller file/line/func is our only information.) */
-	const char*     name;       /* May be null */
-	const char*     file;       /* May be null */
-	const char*     module;     /* May be null */
-	unsigned        line;       /* May be 0 */
+	const void*     functionBase; /* May be null */
+	const void*     address;      /* May be null (for placeholder psuedo-frames, and e.g. the fallback path where the caller file/line/func is our only information.) */
+	const char*     name;         /* May be null */
+	const char*     file;         /* May be null */
+	const void*     moduleBase;   /* May be null */
+	const char*     module;       /* May be null */
+	unsigned        line;         /* May be 0 */
 } mmkDebugStackFunction;
 
 typedef struct {

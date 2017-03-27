@@ -7,14 +7,26 @@
     <Filter Include="build/native">
       <UniqueIdentifier>{ee9d3b47-f71b-4b7f-9a1d-472cc713d6fb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src %28DbgHelp specific%29">
-      <UniqueIdentifier>{283e21f4-3928-4eb8-814b-ef34feeafba4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src">
       <UniqueIdentifier>{833c122a-2e4d-41b0-be66-1daa31fd7b68}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src %28Fallback%29">
-      <UniqueIdentifier>{7f6a3750-b4c6-43c4-a4cc-9d45ca5c8076}</UniqueIdentifier>
+    <Filter Include="src\Parsing">
+      <UniqueIdentifier>{9bfa8c72-2824-4ec9-9cd2-d32bc27f1e16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Parsing\namespace mmk::debug::elf::%2a">
+      <UniqueIdentifier>{964bf01a-5039-4b6d-b601-77be6b4060de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Parsing\namespace mmk::debug::dwarf::%2a">
+      <UniqueIdentifier>{7dc3b112-25df-4659-8174-6009e5996118}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\_Common">
+      <UniqueIdentifier>{f8ab0a95-dbaf-4ea8-ac66-5783a7810ae3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="%28Build Config%29">
+      <UniqueIdentifier>{af705c7c-54a3-442f-9e83-ec94c91f0759}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform Specific">
+      <UniqueIdentifier>{283e21f4-3928-4eb8-814b-ef34feeafba4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -24,36 +36,87 @@
     <ClInclude Include="include\mmk\debug\stack.hpp">
       <Filter>include/mmk/debug</Filter>
     </ClInclude>
-    <ClInclude Include="src\assert.hpp">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="src\dbgHelpContext.hpp">
-      <Filter>src %28DbgHelp specific%29</Filter>
+      <Filter>src\Platform Specific</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dwarf.debugLine.header.hpp">
+      <Filter>src\Parsing\namespace mmk::debug::dwarf::%2a</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dwarf.debugLine.opcodes.hpp">
+      <Filter>src\Parsing\namespace mmk::debug::dwarf::%2a</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dwarf.debugLine.reader.hpp">
+      <Filter>src\Parsing\namespace mmk::debug::dwarf::%2a</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dwarf.leb128.hpp">
+      <Filter>src\Parsing\namespace mmk::debug::dwarf::%2a</Filter>
+    </ClInclude>
+    <ClInclude Include="src\elf.types.hpp">
+      <Filter>src\Parsing\namespace mmk::debug::elf::%2a</Filter>
+    </ClInclude>
+    <ClInclude Include="src\assert.hpp">
+      <Filter>src\_Common</Filter>
+    </ClInclude>
+    <ClInclude Include="src\searchPaths.hpp">
+      <Filter>src\_Common</Filter>
+    </ClInclude>
+    <ClInclude Include="src\elf.reader.hpp">
+      <Filter>src\Parsing\namespace mmk::debug::elf::%2a</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="build\native\libMmkDebugStack.targets">
       <Filter>build/native</Filter>
     </None>
+    <None Include="libMmkDebugStack.props">
+      <Filter>%28Build Config%29</Filter>
+    </None>
+    <None Include="libMmkDebugStack-MSVC.props">
+      <Filter>%28Build Config%29</Filter>
+    </None>
+    <None Include="libMmkDebugStack-nVidiaCodeWorks.props">
+      <Filter>%28Build Config%29</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\lock_cpp11.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\dbgHelpContext_baseType.cpp">
-      <Filter>src %28DbgHelp specific%29</Filter>
+      <Filter>src\Platform Specific</Filter>
     </ClCompile>
     <ClCompile Include="src\dbgHelpContext_onFrameVar.cpp">
-      <Filter>src %28DbgHelp specific%29</Filter>
+      <Filter>src\Platform Specific</Filter>
     </ClCompile>
     <ClCompile Include="src\init_dbghelp.cpp">
-      <Filter>src %28DbgHelp specific%29</Filter>
+      <Filter>src\Platform Specific</Filter>
     </ClCompile>
     <ClCompile Include="src\stack_dbghelp.cpp">
-      <Filter>src %28DbgHelp specific%29</Filter>
+      <Filter>src\Platform Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dwarf.debugLine.header.cpp">
+      <Filter>src\Parsing\namespace mmk::debug::dwarf::%2a</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dwarf.leb128.cpp">
+      <Filter>src\Parsing\namespace mmk::debug::dwarf::%2a</Filter>
+    </ClCompile>
+    <ClCompile Include="src\searchPaths.cpp">
+      <Filter>src\_Common</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lock_cpp11.cpp">
+      <Filter>src\_Common</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lock_pthreads.cpp">
+      <Filter>src\_Common</Filter>
+    </ClCompile>
+    <ClCompile Include="src\init_fallback.cpp">
+      <Filter>src\Platform Specific</Filter>
     </ClCompile>
     <ClCompile Include="src\stack_fallback.cpp">
-      <Filter>src %28Fallback%29</Filter>
+      <Filter>src\Platform Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stack_unwind.cpp">
+      <Filter>src\Platform Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="src\elf.reader.cpp">
+      <Filter>src\Parsing\namespace mmk::debug::elf::%2a</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
