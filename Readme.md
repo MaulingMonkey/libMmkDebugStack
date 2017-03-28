@@ -1,6 +1,6 @@
 # libMmkDebugStack
 
-A (not quite yet) cross-platform library for simple callstack tracing with C89 and C++03 public APIs.
+A cross-platform library for simple callstack tracing with C89 and C++03 public APIs.
 
 Requires a C++11 compiler to build.
 
@@ -13,12 +13,13 @@ License: [Apache 2.0](LICENSE.txt)
 
 # Compatability
 
-| Tested OS    | Compiler    | Implementation              | Notes |
-| ------------ | ----------- | --------------------------- | ----- |
-| Windows 7    | VS2015 u1   | DbgHelp                     | |
-| Android 5.0  | GCC 4.9     | libunwind, elf/dwarf parser | Build and tested via nVidia Codeworks 1R4 on VS2015 u1 |
-| Ubuntu 16.10 | Clang 3.8.1 | Fallback                    | |
-| Ubuntu 16.10 | GCC 6.2.0   | Fallback                    | |
+| Tested OS    | Compiler    | SDK                     | Unwind Impl              | Symbols Impl     |
+| ------------ | ----------- | ----------------------- | ------------------------ | ---------------- |
+| Windows 7    | VS2015 u1   |                         | DbgHelp                  | DbgHelp          |
+| Android 5.0  | GCC 4.9     | nVidia Codeworks 1R4    | libunwind                | Custom elf/dwarf parser |
+| Android 5.0  | Clang 3.6   | Microsoft's Android SDK | __builtin_return_address | Custom elf/dwarf parser |
+| Ubuntu 16.10 | Clang 3.8.1 |                         | None (noop/fallback)     | None             |
+| Ubuntu 16.10 | GCC 6.2.0   |                         | None (noop/fallback)     | None             |
 
 Other C++11 capable platforms/compilers should at least be able to use the Fallback implementation, feel free to file an issue if they don't!
 
@@ -78,7 +79,10 @@ Trace:
     <unknown>(0): RtlInitializeExceptionChain @ 77C398D5
 ```
 
-More examples: [mmkDebugStackTest](mmkDebugStackTest/main.cpp), mmkNvidiaCodeworksTest ([java](mmkNvidiaCodeworksTest/src/com/maulingmonkey/debug/stack/nvidiaCodeworksTest/DisplayStackActivity.java), [c++](mmkNvidiaCodeworksTest/jni/DisplayStackActivity.cpp))
+More examples:
+- mmkDebugStackTest ([c++](mmkDebugStackTest/main.cpp))
+- mmkNvidiaCodeworksTest ([java](mmkNvidiaCodeworksTest/src/com/maulingmonkey/debug/stack/nvidiaCodeworksTest/DisplayStackActivity.java), [c++](mmkNvidiaCodeworksTest/jni/DisplayStackActivity.cpp))
+- mmkAndroidTest ([java](mmkAndroidTest/src/com/mmkAndroidTest/mmkAndroidTest.java), [c++](libMmkAndroidTest/mmkAndroidTest.cpp))
 
 # Installation
 
@@ -90,9 +94,15 @@ More examples: [mmkDebugStackTest](mmkDebugStackTest/main.cpp), mmkNvidiaCodewor
 - Use `libMmkDebugStack.sln` to build `libMmkDebugStack.lib` in the configurations/platforms of your choice.
 - Add `HAS_MMK_DEBUG_STACK` to your preprocessor definitions.
 - Add [`libMmkDebugStack\include\`](libMmkDebugStack/include/) to your #include paths.
-- Add `build\native\lib\$(PlatformTarget)\$(Configuration)\` to your library paths (Windows).
-- Add `build\native\lib\$(ArchAbi)\$(ToolchainIdentifier)\$(Configuration)\` to your library paths (Android).
-- Add `libMmkDebugStack.lib` and `DbgHelp.lib` to your libraries list.
+- Targeting Windows:
+  - Add `build\native\lib\$(PlatformTarget)\$(PlatformToolset)\$(Configuration)\` to your library paths
+  - Add `libMmkDebugStack.lib` and `DbgHelp.lib` to your additional dependencies list.
+- Targeting Android via the nVidia Codeworks for Android 1R4 SDK:
+  - Add `build\native\lib\$(ArchAbi)\$(ToolchainIdentifier)\$(Configuration)\` to your library paths
+  - Add `MmkDebugStack` to your additional dependencies list.
+- Targeting Android via the Microsoft Android SDK:
+  - Add `build\native\lib\$(Platform)\$(PlatformToolset)\$(Configuration)\` to your library paths
+  - Add `-lMmkDebugStack` to your additional dependencies list.
 
 ## From Source (on Linux development machine)
 - Clone the repository
@@ -105,6 +115,6 @@ More examples: [mmkDebugStackTest](mmkDebugStackTest/main.cpp), mmkNvidiaCodewor
 # TODO
 - Add option to use separate debugger process for stability / collecting stacks of foreign threads
 - Backport to C++03 for wider compatability
-- Properly port to Linux, OS X, iOS, <strike>Android</strike>
+- Properly port to Linux, OS X, iOS
 - Port to Consoles, Handhelds, etc. (Blocker: Devkit access)
 - Add Windows CDB backend for possible stability improvements, multi-thread stacks, crash dump analysis, etc.
