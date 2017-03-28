@@ -20,6 +20,7 @@
 
 #include <memory.h>
 #include <errno.h>
+#include <limits.h>
 
 //    Sources:
 // https://en.wikipedia.org/wiki/Executable_and_Linkable_Format
@@ -83,7 +84,7 @@ namespace mmk { namespace debug { namespace elf {
 	bool reader::read(fileHeader& elf) {
 		PARSE_EXPECT(seek(0));
 		PARSE_EXPECT(read(&elf, sizeof(elf)));
-		PARSE_EXPECT(memcmp(elf.ident.magic, "\u007FELF", 4) == 0);
+		PARSE_EXPECT(memcmp(elf.ident.magic, "\x7F""ELF", 4) == 0);
 		PARSE_EXPECT(elf.ident.bitness == fileBitness32 || elf.ident.bitness == fileBitness64);
 		PARSE_EXPECT(elf.ident.endian == fileEndianLittle || elf.ident.endian == fileEndianBig);
 		PARSE_EXPECT(elf.ident.version == 1);
