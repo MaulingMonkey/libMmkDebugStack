@@ -20,18 +20,25 @@
 
 #ifdef _MSC_VER
 #include <windows.h>
+#define ZMMK_ASSERT_PRINTF(...) fprintf(stderr, __VA_ARGS__)
 #define ZMMK_BREAK_IF_DEBUGGER() (IsDebuggerPresent() ? (DebugBreak(),0) : 0)
 
+#elif defined __ANDROID__
+#include <android/log.h>
+#define ZMMK_ASSERT_PRINTF(...) __android_log_print(ANDROID_LOG_ERROR, "libMmkDebugStack", __VA_ARGS__)
+#define ZMMK_BREAK_IF_DEBUGGER() 0
+
 #else
+#define ZMMK_ASSERT_PRINTF(...) fprintf(stderr, __VA_ARGS__)
 #define ZMMK_BREAK_IF_DEBUGGER() 0
 
 #endif
 
-#define ZMMK_ASSERT(condition, ...) ( (!!(condition)) || (                                        \
-	fprintf(stderr, "%s(%d): ZMMK_ASSERT(\"%s\", ...) Failed: ", __FILE__, __LINE__, #condition), \
-	fprintf(stderr, __VA_ARGS__),                                                                 \
-	fprintf(stderr, "\n"),                                                                        \
-	ZMMK_BREAK_IF_DEBUGGER()                                                                      \
+#define ZMMK_ASSERT(condition, ...) ( (!!(condition)) || (                                           \
+	ZMMK_ASSERT_PRINTF("%s(%d): ZMMK_ASSERT(\"%s\", ...) Failed: ", __FILE__, __LINE__, #condition), \
+	ZMMK_ASSERT_PRINTF(__VA_ARGS__),                                                                 \
+	ZMMK_ASSERT_PRINTF("\n"),                                                                        \
+	ZMMK_BREAK_IF_DEBUGGER()                                                                         \
 ))
 
 #endif /* ndef ZMMK_IG_SRC_ASSERT_HPP */

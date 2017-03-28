@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProjectSchemaDefinitions xmlns="clr-namespace:Microsoft.Build.Framework.XamlTypes;assembly=Microsoft.Build.Framework">
+  <Rule Name="ReferencedPackages_libMmkDebugStack" PageTemplate="tool" DisplayName="Referenced Packages" SwitchPrefix="/" Order="1">
+    <Rule.Categories>
+      <Category Name="libMmkDebugStack" DisplayName="libMmkDebugStack" />
+    </Rule.Categories>
+    <Rule.DataSource>
+      <DataSource Persistence="ProjectFile" ItemType="" HasConfigurationCondition="true" />
+    </Rule.DataSource>
+    <EnumProperty Name="MmkDebugStackConfig" DisplayName="Library Configuration" Description="Which libMmkDebugStack library configuration variant to link against (if linking)" Category="libMmkDebugStack">
+      <EnumValue Name="Debug"                      DisplayName="Debug (unoptimized)" />
+      <EnumValue Name="Release"                    DisplayName="Release (optimized)" />
+    </EnumProperty>
+    <EnumProperty Name="MmkDebugStackLink" DisplayName="Library Platform" Description="Which libMmkDebugStack library platform/architecture to link or build, if any." Category="libMmkDebugStack">
+      <EnumValue Name="LinkMsAndroidArmClang36"    DisplayName="Link Android ARM (Clang 3.6, Unwind)"          Description="Link against Android ARM libs (built with Clang 3.6 via MS Android SDK,   targeting Unwind.)" />
+      <EnumValue Name="LinkNvAndroidArmGcc49"      DisplayName="Link Android ARM (GCC 4.9, Unwind, nVidia)"    Description="Link against Android ARM libs (built with GCC 4.9   via nVidia CodeWorks, targeting Unwind.)" />
+      <EnumValue Name="LinkWindowsX86v140"         DisplayName="Link Windows x86 (v140, DbgHelp)"              Description="Link against Windows x86 libs (built with v140 / VS2015,                  targeting DbgHelp.)" />
+      <EnumValue Name="LinkWindowsX64v140"         DisplayName="Link Windows x64 (v140, DbgHelp)"              Description="Link against Windows x64 libs (built with v140 / VS2015,                  targeting DbgHelp.)" />
+      <EnumValue Name="SrcDbghelp"                 DisplayName="Source (DbgHelp)"                              Description="Reference &amp; build source code in project instead of linking directly.  Build to use DbgHelp." />
+      <EnumValue Name="SrcUnwind"                  DisplayName="Source (Unwind)"                               Description="Reference &amp; build source code in project instead of linking directly.  Build to use libunwind." />
+      <EnumValue Name="SrcFallback"                DisplayName="Source (Fallback)"                             Description="Reference &amp; build source code in project instead of linking directly.  Build against fallback." />
+      <EnumValue Name="None"                       DisplayName="Don't Link"                                    Description="Don't build or link against libMmkDebugStack at all." />
+    </EnumProperty>
+  </Rule>
+</ProjectSchemaDefinitions>

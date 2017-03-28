@@ -1,18 +1,92 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <!-- By naming this exactly build/native/{ProjectName}.targets, this will be auto-referenced by projects consuming this nuget package. -->
+
+  <PropertyGroup>
+    <!-- Link known binaries -->
+    <MmkDebugStackLink Condition="('$(MmkDebugStackLink)'=='') And ('$(PlatformToolset)'    =='v140'     ) And ('$(Platform)'=='Win32'             )">LinkWindowsX86v140</MmkDebugStackLink>
+    <MmkDebugStackLink Condition="('$(MmkDebugStackLink)'=='') And ('$(PlatformToolset)'    =='v140'     ) And ('$(Platform)'=='x64'               )">LinkWindowsX64v140</MmkDebugStackLink>
+    <MmkDebugStackLink Condition="('$(MmkDebugStackLink)'=='') And ('$(PlatformToolset)'    =='Clang_3_6') And ('$(Platform)'=='ARM'               )">LinkMsAndroidArmClang36</MmkDebugStackLink>
+    <MmkDebugStackLink Condition="('$(MmkDebugStackLink)'=='') And ('$(NdkToolchainVersion)'=='gcc-4.9'  ) And ('$(Platform)'=='ARM-Android-NVIDIA')">LinkNvAndroidArmGcc49</MmkDebugStackLink>
+
+    <!-- Build known source configurations -->
+    <MmkDebugStackLink Condition="('$(MmkDebugStackLink)'=='') And ('$(ApplicationType)'    =='Android'  )                                          ">SrcUnwind</MmkDebugStackLink><!-- Microsoft Android SDK -->
+    <MmkDebugStackLink Condition="('$(MmkDebugStackLink)'=='') And ('$(NdkToolchainVersion)'!=''         )                                          ">SrcUnwind</MmkDebugStackLink><!-- nVidia CodeWorks SDK -->
+    <MmkDebugStackLink Condition="('$(MmkDebugStackLink)'=='') And ('$(Keyword)'            =='Win32Proj')                                          ">SrcDbghelp</MmkDebugStackLink>
+
+    <MmkDebugStackLink Condition="('$(MmkDebugStackLink)'=='')                                                                                      ">SrcFallback</MmkDebugStackLink>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <MmkDebugStackConfig Condition="('$(MmkDebugStackConfig)'=='') And ('$(Configuration)'=='Debug'  )">Debug</MmkDebugStackConfig>
+    <MmkDebugStackConfig Condition="('$(MmkDebugStackConfig)'=='') And ('$(Configuration)'=='Release')">Release</MmkDebugStackConfig>
+    <MmkDebugStackConfig Condition="('$(MmkDebugStackConfig)'=='')                                    ">Release</MmkDebugStackConfig><!-- We only provide Debug/Release libs, fallback on src for other platforms -->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)\libMmkDebugStack-propertiesui.xml" />
+  </ItemGroup>
+
+  <!-- Add source via indirect MmkDebugStackSrc tags to hide from Solution Explorer -->
+  <ItemGroup>
+    <MmkDebugStackSrc Include="$(MSBuildThisFileDirectory)..\..\src\**\*.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="@(MmkDebugStackSrc)">
+      <ExcludedFromBuild Condition="('$(MmkDebugStackLink)'!='SrcDbghelp') And ('$(MmkDebugStackLink)'!='SrcUnwind') And ('$(MmkDebugStackLink)'!='SrcFallback')">true</ExcludedFromBuild>
+      <PreprocessorDefinitions Condition="'$(MmkDebugStackLink)'=='SrcDbghelp'">MMK_DEBUG_STACK_USE_DBGHELP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(MmkDebugStackLink)'=='SrcUnwind' ">MMK_DEBUG_STACK_USE_UNWIND;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <InProject>false</InProject>
+      <Visible>false</Visible>
+    </ClCompile>
+  </ItemGroup>
+
+  <!-- Build settings -->
   <ItemDefinitionGroup>
     <ClCompile>
       <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>HAS_MMK_DEBUG_STACK;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(MmkDebugStackLink)'=='LinkWindowsX86v140'">
     <Link>
-      <AdditionalLibraryDirectories>$(MSBuildThisFileDirectory)lib\$(PlatformTarget)\$(PlatformToolset)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(MSBuildThisFileDirectory)lib\x86\v140\$(MmkDebugStackConfig);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>dbghelp.lib;libMmkDebugStack.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>$(MSBuildThisFileDirectory)lib\$(PlatformTarget)\$(PlatformToolset)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(MSBuildThisFileDirectory)lib\x86\v140\$(MmkDebugStackConfig);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>dbghelp.lib;libMmkDebugStack.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(MmkDebugStackLink)'=='LinkWindowsX64v140'">
+    <Link>
+      <AdditionalLibraryDirectories>$(MSBuildThisFileDirectory)lib\x64\v140\$(MmkDebugStackConfig);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>dbghelp.lib;libMmkDebugStack.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>$(MSBuildThisFileDirectory)lib\x64\v140\$(MmkDebugStackConfig);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>dbghelp.lib;libMmkDebugStack.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(MmkDebugStackLink)'=='LinkMsAndroidArmClang36'">
+    <Link>
+      <AdditionalLibraryDirectories>$(MSBuildThisFileDirectory)lib\ARM\Clang_3_6\$(MmkDebugStackConfig);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>-lMmkDebugStack;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>$(MSBuildThisFileDirectory)lib\ARM\Clang_3_6\$(MmkDebugStackConfig);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>-lMmkDebugStack;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(MmkDebugStackLink)'=='LinkNvAndroidArmGcc49'">
+    <Link>
+      <AdditionalLibraryDirectories>$(MSBuildThisFileDirectory)lib\armeabi-v7a\gcc-4.9\$(MmkDebugStackConfig);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>MmkDebugStack;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>$(MSBuildThisFileDirectory)lib\armeabi-v7a\gcc-4.9\$(MmkDebugStackConfig);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>MmkDebugStack;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
 </Project>

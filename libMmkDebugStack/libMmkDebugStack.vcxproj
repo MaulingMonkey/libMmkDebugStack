@@ -73,6 +73,11 @@
     <ClCompile Include="src\stack_fallback.cpp" />
     <ClCompile Include="src\stack_unwind.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Xml Include="build\native\libMmkDebugStack-propertiesui.xml">
+      <SubType>Designer</SubType>
+    </Xml>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{19672FA1-37B3-4DE8-B53E-1B92AE27EEEC}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>

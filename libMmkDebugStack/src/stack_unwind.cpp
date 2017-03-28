@@ -45,28 +45,27 @@ namespace
 		const char*					funcHint;
 	};
 
-#ifdef __clang__
-	const _Unwind_Reason_Code urcError    = _URC_FOREIGN_EXCEPTION_CAUGHT;
-	const _Unwind_Reason_Code urcContinue = _URC_NO_REASON;
-	const _Unwind_Reason_Code urcEnd      = _URC_NORMAL_STOP;
-#else
-	const _Unwind_Reason_Code urcError    = _URC_FAILURE;
-	const _Unwind_Reason_Code urcContinue = _URC_NO_REASON;
-	const _Unwind_Reason_Code urcEnd      = _URC_OK;
-#endif
+	bool reportFrame(context& c, uintptr_t ip);
 
+#ifndef __clang__ // _Unwind_Backtrace fails to invoke doUnwind on clang at all, we'll use __builtin_return_address instead.
 	_Unwind_Reason_Code doUnwind(_Unwind_Context* uwContext, void* pOurContext)
 	{
-		if (!ZMMK_ASSERT(pOurContext, "Expected pOurContext")) return urcError;
-		if (!uwContext) return urcEnd; // libunwind bug or terminal condition?
+		if (!ZMMK_ASSERT(pOurContext, "Expected pOurContext")) return _URC_FAILURE;
+		//if (!uwContext) return urcEnd; // libunwind bug or terminal condition?
 		context& c = *static_cast<context*>(pOurContext);
 
-		if (c.framesToSkip > 0) { --c.framesToSkip; return urcContinue; }
-		if (c.maxFrames <= 0) { return urcEnd; } // Terminal completed
+		if (c.framesToSkip > 0) { --c.framesToSkip; return _URC_NO_REASON; }
+		if (c.maxFrames <= 0) { return _URC_FAILURE; } // Terminal completed
 		--c.maxFrames;
 
 		const uintptr_t ip = _Unwind_GetIP(uwContext);
 
+		return reportFrame(c, ip) ? _URC_NO_REASON : _URC_FAILURE;
+	}
+#endif
+
+	bool reportFrame(context& c, uintptr_t ip) {
+		if (!ip) return false;
 		mmkDebugStackFunction f = {};
 		f.functionBase = NULL;
 		f.address      = reinterpret_cast<void*>(ip);
@@ -76,6 +75,7 @@ namespace
 		f.module       = (c.flags & mmkDebugStackResolveNullMissing) ? NULL : "<unknown>";
 		f.line         = 0;
 
+		// Another option:  Parse /proc/self/maps for module info, then parse the elf for naming
 		char demangledBuf[1024]="";
 		Dl_info dlInfo = {};
 		if (c.flags & (mmkDebugStackResolveFuncName | mmkDebugStackResolveFuncModule | mmkDebugStackResolveFuncFile | mmkDebugStackResolveFuncLine)) {
@@ -163,8 +163,9 @@ namespace
 			}
 		}
 
-		return (*c.onFunction)(c.userData, &f) ? urcContinue : urcEnd;
+		return (*c.onFunction)(c.userData, &f);
 	}
+
 }
 
 ZMMK_DEBUG_STACK_API
@@ -199,8 +200,22 @@ void mmkDebugStackCurrentThread(
 	zmmkDebugStackInitNoLock();
 
 	context ourContext = { flags, framesToSkip, maxFrames, userData, onFunction, onVariable, fileHint, lineHint, funcHint };
+
+#ifdef __clang__ // _Unwind_Backtrace fails to invoke doUnwind on clang at all, so use __builtin_return_address instead.
+#define FRAME(n) if (n >= framesToSkip) {                                                                        \
+    if (maxFrames-- == 0) return;                                                                                \
+    if (!reportFrame(ourContext, (uintptr_t)__builtin_extract_return_addr(__builtin_return_address(n)))) return; \
+}
+#define FRAME10(n) FRAME(n##0) FRAME(n##1) FRAME(n##2) FRAME(n##3) FRAME(n##4) FRAME(n##5) FRAME(n##6) FRAME(n##7) FRAME(n##8) FRAME(n##9)
+	// Up to 100 frames
+	FRAME10() FRAME10(1) FRAME10(2) FRAME10(3) FRAME10(4) FRAME10(5) FRAME10(6) FRAME10(7) FRAME10(8) FRAME10(9)
+#undef FRAME10
+#undef FRAME
+
+#else // While we can call __builtin_frame_address on GCC, it crashes!  So let's not do that.
 	_Unwind_Reason_Code rc = _Unwind_Backtrace(&doUnwind, &ourContext);
 	(void)rc;
+#endif
 }
 
 #endif /* def MMK_DEBUG_STACK_USE_DBGHELP */

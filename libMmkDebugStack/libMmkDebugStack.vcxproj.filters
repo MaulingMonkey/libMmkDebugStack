@@ -122,4 +122,9 @@
       <Filter>src\Parsing\namespace mmk::debug::elf::%2a</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Xml Include="build\native\libMmkDebugStack-propertiesui.xml">
+      <Filter>build/native</Filter>
+    </Xml>
+  </ItemGroup>
 </Project>

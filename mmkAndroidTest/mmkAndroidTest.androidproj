@@ -90,6 +90,9 @@
     <AntProjectPropertiesFile Include="project.properties" />
     <JavaCompile Include="src\com\mmkAndroidTest\mmkAndroidTest.java" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\libMmkAndroidTest\libMmkAndroidTest.vcxproj" />
+  </ItemGroup>
   <Import Project="$(AndroidTargetsPath)\Android.targets" />
   <ImportGroup Label="ExtensionTargets" />
 </Project>

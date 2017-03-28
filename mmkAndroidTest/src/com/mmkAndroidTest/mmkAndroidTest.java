@@ -23,7 +23,7 @@ import android.widget.TextView;
 
 public class mmkAndroidTest extends Activity {
 	static {
-		//System.loadLibrary("mmkAndroidTest");
+		System.loadLibrary("MmkAndroidTest");
 	}
 
 	private ScrollView sv;
@@ -33,13 +33,11 @@ public class mmkAndroidTest extends Activity {
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		//mmkDebugStackSearchPaths(getApplicationInfo().nativeLibraryDir);
+		mmkDebugStackSearchPaths(getApplicationInfo().nativeLibraryDir);
 
 		StringBuilder sb = new StringBuilder();
-		sb.append("mmkAndroidTest Placeholder");
-		//sb.append(traceDemo());
-		//sb.append("\n\n");
-		//sb.append(inspectElf(getApplicationInfo().nativeLibraryDir, System.mapLibraryName("mmkNvidiaCodeworksTest")));
+		sb.append("mmkAndroidTest Trace Demo.\n\n");
+		sb.append(traceDemo());
 
 		tv = new TextView(this);
 		tv.setText(sb.toString());
@@ -49,8 +47,8 @@ public class mmkAndroidTest extends Activity {
 		setContentView(sv);
 	}
 
+	public native void mmkDebugStackSearchPaths(String elfDir);
+	public native String traceDemo();
 	// TODO: Implement
-	// public native void mmkDebugStackSearchPaths(String elfDir);
-	// public native String traceDemo();
 	// public native String inspectElf(String elfDir, String elfName);
 }

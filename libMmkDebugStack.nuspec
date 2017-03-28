@@ -16,5 +16,6 @@
 	<files>
 		<file src="libMmkDebugStack\build\**\*.*"   target="build"/>
 		<file src="libMmkDebugStack\include\**\*.*" target="include"/>
+		<file src="libMmkDebugStack\src\**\*.*"     target="src"/>
 	</files>
 </package>
