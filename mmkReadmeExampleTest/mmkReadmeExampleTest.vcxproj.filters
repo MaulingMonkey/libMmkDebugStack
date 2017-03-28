@@ -3,4 +3,14 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Filter Include="%28Build Config%29">
+      <UniqueIdentifier>{0ed289c4-c2c9-4346-962e-0f4ae5dbc222}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="mmkReadmeExampleTest.props">
+      <Filter>%28Build Config%29</Filter>
+    </None>
+  </ItemGroup>
 </Project>

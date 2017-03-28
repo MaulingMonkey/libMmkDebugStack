@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <OutDir>$(ProjectDir)bin\$(ArchAbi)\$(ToolchainIdentifier)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)bin\$(ArchAbi)\$(ToolchainIdentifier)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)obj\$(ProjectName)\$(ArchAbi)\$(ToolchainIdentifier)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup>

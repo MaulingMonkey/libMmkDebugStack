@@ -13,6 +13,9 @@
     <Filter Include="src/com/maulingmonkey/debug/stack/nvidiaCodeworksTest">
       <UniqueIdentifier>9ccd64ec-b816-433d-aeb6-13a999b5c952</UniqueIdentifier>
     </Filter>
+    <Filter Include="%28Build Config%29">
+      <UniqueIdentifier>{28737e32-a7af-4f0b-809d-4b9efd57afcb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <AndroidBuild Include="AndroidManifest.xml" />
@@ -31,6 +34,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="mmkNvidiaCodeworksTest.props" />
+    <None Include="mmkNvidiaCodeworksTest.props">
+      <Filter>%28Build Config%29</Filter>
+    </None>
   </ItemGroup>
 </Project>
