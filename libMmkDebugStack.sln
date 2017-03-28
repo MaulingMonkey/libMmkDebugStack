@@ -34,56 +34,82 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projects (Windows, Linux)",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projects (Android, nVidia)", "Projects (Android, nVidia)", "{2B5EE144-9D89-422E-8DB9-455C64C6CD39}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projects (Android, Microsoft)", "Projects (Android, Microsoft)", "{259D362A-F5C7-4F5A-A712-D4AB2F73F94C}"
+EndProject
+Project("{39E2626F-3545-4960-A6E8-258AD8476CE5}") = "mmkAndroidTest", "mmkAndroidTest\mmkAndroidTest.androidproj", "{92B7DC5F-F22F-4E7D-8FD0-5C49FF9A623F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Android (ARM, Microsoft) = Debug|Android (ARM, Microsoft)
 		Debug|Android (ARM, nVidia) = Debug|Android (ARM, nVidia)
 		Debug|Windows (x64) = Debug|Windows (x64)
 		Debug|Windows (x86) = Debug|Windows (x86)
+		Release|Android (ARM, Microsoft) = Release|Android (ARM, Microsoft)
 		Release|Android (ARM, nVidia) = Release|Android (ARM, nVidia)
 		Release|Windows (x64) = Release|Windows (x64)
 		Release|Windows (x86) = Release|Windows (x86)
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{19672FA1-37B3-4DE8-B53E-1B92AE27EEEC}.Debug|Android (ARM, Microsoft).ActiveCfg = Debug|ARM-Android-NVIDIA
 		{19672FA1-37B3-4DE8-B53E-1B92AE27EEEC}.Debug|Android (ARM, nVidia).ActiveCfg = Debug|ARM-Android-NVIDIA
 		{19672FA1-37B3-4DE8-B53E-1B92AE27EEEC}.Debug|Android (ARM, nVidia).Build.0 = Debug|ARM-Android-NVIDIA
 		{19672FA1-37B3-4DE8-B53E-1B92AE27EEEC}.Debug|Windows (x64).ActiveCfg = Debug|x64
 		{19672FA1-37B3-4DE8-B53E-1B92AE27EEEC}.Debug|Windows (x64).Build.0 = Debug|x64
 		{19672FA1-37B3-4DE8-B53E-1B92AE27EEEC}.Debug|Windows (x86).ActiveCfg = Debug|Win32
 		{19672FA1-37B3-4DE8-B53E-1B92AE27EEEC}.Debug|Windows (x86).Build.0 = Debug|Win32
+		{19672FA1-37B3-4DE8-B53E-1B92AE27EEEC}.Release|Android (ARM, Microsoft).ActiveCfg = Release|ARM-Android-NVIDIA
 		{19672FA1-37B3-4DE8-B53E-1B92AE27EEEC}.Release|Android (ARM, nVidia).ActiveCfg = Release|ARM-Android-NVIDIA
 		{19672FA1-37B3-4DE8-B53E-1B92AE27EEEC}.Release|Android (ARM, nVidia).Build.0 = Release|ARM-Android-NVIDIA
 		{19672FA1-37B3-4DE8-B53E-1B92AE27EEEC}.Release|Windows (x64).ActiveCfg = Release|x64
 		{19672FA1-37B3-4DE8-B53E-1B92AE27EEEC}.Release|Windows (x64).Build.0 = Release|x64
 		{19672FA1-37B3-4DE8-B53E-1B92AE27EEEC}.Release|Windows (x86).ActiveCfg = Release|Win32
 		{19672FA1-37B3-4DE8-B53E-1B92AE27EEEC}.Release|Windows (x86).Build.0 = Release|Win32
+		{A4BE36F8-6022-4302-A663-3F2960B90050}.Debug|Android (ARM, Microsoft).ActiveCfg = Debug|Win32
 		{A4BE36F8-6022-4302-A663-3F2960B90050}.Debug|Android (ARM, nVidia).ActiveCfg = Debug|Win32
 		{A4BE36F8-6022-4302-A663-3F2960B90050}.Debug|Windows (x64).ActiveCfg = Debug|x64
 		{A4BE36F8-6022-4302-A663-3F2960B90050}.Debug|Windows (x64).Build.0 = Debug|x64
 		{A4BE36F8-6022-4302-A663-3F2960B90050}.Debug|Windows (x86).ActiveCfg = Debug|Win32
 		{A4BE36F8-6022-4302-A663-3F2960B90050}.Debug|Windows (x86).Build.0 = Debug|Win32
+		{A4BE36F8-6022-4302-A663-3F2960B90050}.Release|Android (ARM, Microsoft).ActiveCfg = Release|Win32
 		{A4BE36F8-6022-4302-A663-3F2960B90050}.Release|Android (ARM, nVidia).ActiveCfg = Release|Win32
 		{A4BE36F8-6022-4302-A663-3F2960B90050}.Release|Windows (x64).ActiveCfg = Release|x64
 		{A4BE36F8-6022-4302-A663-3F2960B90050}.Release|Windows (x64).Build.0 = Release|x64
 		{A4BE36F8-6022-4302-A663-3F2960B90050}.Release|Windows (x86).ActiveCfg = Release|Win32
 		{A4BE36F8-6022-4302-A663-3F2960B90050}.Release|Windows (x86).Build.0 = Release|Win32
+		{7AC7D5FC-87AE-4D13-82C2-392A9C95516B}.Debug|Android (ARM, Microsoft).ActiveCfg = Debug|Win32
 		{7AC7D5FC-87AE-4D13-82C2-392A9C95516B}.Debug|Android (ARM, nVidia).ActiveCfg = Debug|Win32
 		{7AC7D5FC-87AE-4D13-82C2-392A9C95516B}.Debug|Windows (x64).ActiveCfg = Debug|x64
 		{7AC7D5FC-87AE-4D13-82C2-392A9C95516B}.Debug|Windows (x64).Build.0 = Debug|x64
 		{7AC7D5FC-87AE-4D13-82C2-392A9C95516B}.Debug|Windows (x86).ActiveCfg = Debug|Win32
 		{7AC7D5FC-87AE-4D13-82C2-392A9C95516B}.Debug|Windows (x86).Build.0 = Debug|Win32
+		{7AC7D5FC-87AE-4D13-82C2-392A9C95516B}.Release|Android (ARM, Microsoft).ActiveCfg = Release|Win32
 		{7AC7D5FC-87AE-4D13-82C2-392A9C95516B}.Release|Android (ARM, nVidia).ActiveCfg = Release|Win32
 		{7AC7D5FC-87AE-4D13-82C2-392A9C95516B}.Release|Windows (x64).ActiveCfg = Release|x64
 		{7AC7D5FC-87AE-4D13-82C2-392A9C95516B}.Release|Windows (x64).Build.0 = Release|x64
 		{7AC7D5FC-87AE-4D13-82C2-392A9C95516B}.Release|Windows (x86).ActiveCfg = Release|Win32
 		{7AC7D5FC-87AE-4D13-82C2-392A9C95516B}.Release|Windows (x86).Build.0 = Release|Win32
+		{F3E7E113-8377-485F-A976-930BC9487C4D}.Debug|Android (ARM, Microsoft).ActiveCfg = Debug|Tegra-Android
 		{F3E7E113-8377-485F-A976-930BC9487C4D}.Debug|Android (ARM, nVidia).ActiveCfg = Debug|Tegra-Android
 		{F3E7E113-8377-485F-A976-930BC9487C4D}.Debug|Android (ARM, nVidia).Build.0 = Debug|Tegra-Android
 		{F3E7E113-8377-485F-A976-930BC9487C4D}.Debug|Windows (x64).ActiveCfg = Debug|Tegra-Android
 		{F3E7E113-8377-485F-A976-930BC9487C4D}.Debug|Windows (x86).ActiveCfg = Debug|Tegra-Android
+		{F3E7E113-8377-485F-A976-930BC9487C4D}.Release|Android (ARM, Microsoft).ActiveCfg = Release|Tegra-Android
 		{F3E7E113-8377-485F-A976-930BC9487C4D}.Release|Android (ARM, nVidia).ActiveCfg = Release|Tegra-Android
 		{F3E7E113-8377-485F-A976-930BC9487C4D}.Release|Android (ARM, nVidia).Build.0 = Release|Tegra-Android
 		{F3E7E113-8377-485F-A976-930BC9487C4D}.Release|Windows (x64).ActiveCfg = Release|Tegra-Android
 		{F3E7E113-8377-485F-A976-930BC9487C4D}.Release|Windows (x86).ActiveCfg = Release|Tegra-Android
+		{92B7DC5F-F22F-4E7D-8FD0-5C49FF9A623F}.Debug|Android (ARM, Microsoft).ActiveCfg = Debug|ARM
+		{92B7DC5F-F22F-4E7D-8FD0-5C49FF9A623F}.Debug|Android (ARM, Microsoft).Build.0 = Debug|ARM
+		{92B7DC5F-F22F-4E7D-8FD0-5C49FF9A623F}.Debug|Android (ARM, Microsoft).Deploy.0 = Debug|ARM
+		{92B7DC5F-F22F-4E7D-8FD0-5C49FF9A623F}.Debug|Android (ARM, nVidia).ActiveCfg = Debug|x86
+		{92B7DC5F-F22F-4E7D-8FD0-5C49FF9A623F}.Debug|Windows (x64).ActiveCfg = Debug|x86
+		{92B7DC5F-F22F-4E7D-8FD0-5C49FF9A623F}.Debug|Windows (x86).ActiveCfg = Debug|x86
+		{92B7DC5F-F22F-4E7D-8FD0-5C49FF9A623F}.Release|Android (ARM, Microsoft).ActiveCfg = Release|ARM
+		{92B7DC5F-F22F-4E7D-8FD0-5C49FF9A623F}.Release|Android (ARM, Microsoft).Build.0 = Release|ARM
+		{92B7DC5F-F22F-4E7D-8FD0-5C49FF9A623F}.Release|Android (ARM, Microsoft).Deploy.0 = Release|ARM
+		{92B7DC5F-F22F-4E7D-8FD0-5C49FF9A623F}.Release|Android (ARM, nVidia).ActiveCfg = Release|x86
+		{92B7DC5F-F22F-4E7D-8FD0-5C49FF9A623F}.Release|Windows (x64).ActiveCfg = Release|x86
+		{92B7DC5F-F22F-4E7D-8FD0-5C49FF9A623F}.Release|Windows (x86).ActiveCfg = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,5 +119,6 @@ Global
 		{A4BE36F8-6022-4302-A663-3F2960B90050} = {A0E9AAD9-E85F-4F15-AFED-F5870B32A16E}
 		{7AC7D5FC-87AE-4D13-82C2-392A9C95516B} = {A0E9AAD9-E85F-4F15-AFED-F5870B32A16E}
 		{F3E7E113-8377-485F-A976-930BC9487C4D} = {2B5EE144-9D89-422E-8DB9-455C64C6CD39}
+		{92B7DC5F-F22F-4E7D-8FD0-5C49FF9A623F} = {259D362A-F5C7-4F5A-A712-D4AB2F73F94C}
 	EndGlobalSection
 EndGlobal
