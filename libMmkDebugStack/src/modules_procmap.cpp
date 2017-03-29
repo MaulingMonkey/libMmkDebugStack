@@ -23,13 +23,6 @@ void modules_procmap_exports_nothing() {} // Supress linker warning
 #include <string.h>
 #include "assert.hpp"
 
-void dumpFile(FILE* f)
-{
-	char line[1024];
-	while (fgets(line, sizeof(line), f)) ZMMK_ASSERT_PRINTF("LINE: %s", line);
-	rewind(f);
-}
-
 void mmkDebugModulesLoaded(
 	mmkDebugModulesResolveFlags        flags,
 	void*                              userData,
@@ -37,7 +30,6 @@ void mmkDebugModulesLoaded(
 {
 	FILE* f = fopen("/proc/self/maps", "r");
 	if (!ZMMK_ASSERT(f, "Failed to open /proc/self/maps: errno=%d", errno)) return;
-	dumpFile(f);
 
 	void*           low             =0;
 	void*           hi              =0;
@@ -52,11 +44,8 @@ void mmkDebugModulesLoaded(
 	const bool useNull = flags & mmkDebugModulesResolveNullMissing;
 	for (;;) {
 		const int components = fscanf(f, "%p-%p %127s %x %127s %d%255[ ]%255[^\n]", &low, &hi, perms, &offset, time, &size, whitespace, path);
-		//ZMMK_ASSERT_PRINTF("components = %d", components);
 		if (components <= 0) break; // Bug or EOF.
 		if (!ZMMK_ASSERT(components == 7 || components == 8, "fscanf failed to read a full /proc/self/maps line")) return;
-		ZMMK_ASSERT_PRINTF("Matched: %p-%p %s %x %s %d [%s]", low, hi, perms, offset, time, size, path);
-		//if (!fgets(path, sizeof(path), f)) continue; // Didn't have file/path/name component
 
 		if (path[0] == '\0') continue; // Skip memory regions that didn't map to anything
 		if (path[0] == '[') continue; // Skip tags such as [anon:libc_malloc], [stack], [vectors], etc.
@@ -88,7 +77,6 @@ void mmkDebugModulesLoaded(
 		if (!(*onModule)(userData, &m)) break;
 	}
 
-	ZMMK_ASSERT_PRINTF("/proc/self/maps read OK?");
 	fclose(f);
 }
 
