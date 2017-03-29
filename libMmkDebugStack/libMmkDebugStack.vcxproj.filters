@@ -63,6 +63,12 @@
     <ClInclude Include="src\elf.reader.hpp">
       <Filter>src\Parsing\namespace mmk::debug::elf::%2a</Filter>
     </ClInclude>
+    <ClInclude Include="include\mmk\debug\modules.hpp">
+      <Filter>include/mmk/debug</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mmk\debug\modules.h">
+      <Filter>include/mmk/debug</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="build\native\libMmkDebugStack.targets">
@@ -120,6 +126,15 @@
     </ClCompile>
     <ClCompile Include="src\elf.reader.cpp">
       <Filter>src\Parsing\namespace mmk::debug::elf::%2a</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules_dbghelp.cpp">
+      <Filter>src\Platform Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules_procmap.cpp">
+      <Filter>src\Platform Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="src\modules_noop.cpp">
+      <Filter>src\Platform Specific</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

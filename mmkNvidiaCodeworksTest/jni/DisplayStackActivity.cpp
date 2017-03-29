@@ -14,6 +14,7 @@
 */
 
 #include <mmk/debug/stack.h>
+#include <mmk/debug/modules.h>
 
 // Private APIs for debugging!
 #include "elf.reader.hpp"
@@ -38,6 +39,19 @@ Java_com_maulingmonkey_debug_stack_nvidiaCodeworksTest_DisplayStackActivity_mmkD
 	env->ReleaseStringUTFChars(jElfDir,  elfDir);
 }
 
+
+
+extern "C" JNIEXPORT jstring JNICALL
+Java_com_maulingmonkey_debug_stack_nvidiaCodeworksTest_DisplayStackActivity_getModules( JNIEnv* env, jobject thiz )
+{
+	std::stringstream ss;
+	mmk::debug::modulesLoaded( mmkDebugModulesResolveAll, [&](const mmk::debug::module& m){
+		//ss << "    " << m.name << "  ver=" << m.version << "  path=" << m.path << "\n";
+		ss << "    " << m.path << "\n";
+		return true;
+	});
+	return env->NewStringUTF(ss.str().c_str());
+}
 
 
 

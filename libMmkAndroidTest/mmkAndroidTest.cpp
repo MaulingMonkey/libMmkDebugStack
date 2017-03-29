@@ -14,6 +14,7 @@
 */
 
 #include <mmk/debug/stack.hpp>
+#include <mmk/debug/modules.hpp>
 #include <sstream>
 #include <jni.h>
 
@@ -25,6 +26,19 @@ Java_com_mmkAndroidTest_mmkAndroidTest_mmkDebugStackSearchPaths( JNIEnv* env, jo
 	const char* elfDir  = env->GetStringUTFChars(jElfDir,  NULL);
 	mmkDebugStackSearchPaths(&elfDir, 1);
 	env->ReleaseStringUTFChars(jElfDir,  elfDir);
+}
+
+
+
+extern "C" JNIEXPORT jstring JNICALL
+Java_com_mmkAndroidTest_mmkAndroidTest_getModules( JNIEnv* env, jobject thiz )
+{
+	std::stringstream ss;
+	mmk::debug::modulesLoaded( mmkDebugModulesResolveAll, [&](const mmk::debug::module& m){
+		ss << "    " << m.path << "\n";
+		return true;
+	});
+	return env->NewStringUTF(ss.str().c_str());
 }
 
 

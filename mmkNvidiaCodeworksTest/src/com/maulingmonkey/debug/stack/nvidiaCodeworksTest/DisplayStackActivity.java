@@ -37,7 +37,10 @@ public class DisplayStackActivity extends Activity {
 		//mmkDebugStackSearchPaths(ActivityThread.systemMain().getSystemContext().getApplicationInfo().nativeLibraryDir); // Requires higher android api level than I'm setting?
 
 		StringBuilder sb = new StringBuilder();
+		sb.append("Trace:\n");
 		sb.append(traceDemo());
+		sb.append("\nModules:\n");
+		sb.append(getModules());
 		//sb.append("\n\n");
 		//sb.append(inspectElf(getApplicationInfo().nativeLibraryDir, System.mapLibraryName("mmkNvidiaCodeworksTest")));
 
@@ -50,6 +53,7 @@ public class DisplayStackActivity extends Activity {
 	}
 
 	public native void mmkDebugStackSearchPaths(String elfDir);
+	public native String getModules();
 	public native String traceDemo();
 	public native String inspectElf(String elfDir, String elfName);
 }

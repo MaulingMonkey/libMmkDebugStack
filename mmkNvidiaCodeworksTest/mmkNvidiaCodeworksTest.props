@@ -15,6 +15,7 @@
       <AdditionalLibraryDirectories>$(SolutionDir)\libMmkDebugStack\build\native\lib\$(ArchAbi)\$(ToolchainIdentifier)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>MmkDebugStack;%(AdditionalDependencies)</AdditionalDependencies>
       <UseLinker>gold</UseLinker>
+      <EchoCommandLines>true</EchoCommandLines>
     </Link>
   </ItemDefinitionGroup>
 </Project>

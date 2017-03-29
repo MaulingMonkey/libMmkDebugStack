@@ -37,7 +37,10 @@ public class mmkAndroidTest extends Activity {
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("mmkAndroidTest Trace Demo.\n\n");
+		sb.append("Trace:\n");
 		sb.append(traceDemo());
+		sb.append("\nModules:\n");
+		sb.append(getModules());
 
 		tv = new TextView(this);
 		tv.setText(sb.toString());
@@ -48,6 +51,7 @@ public class mmkAndroidTest extends Activity {
 	}
 
 	public native void mmkDebugStackSearchPaths(String elfDir);
+	public native String getModules();
 	public native String traceDemo();
 	// TODO: Implement
 	// public native String inspectElf(String elfDir, String elfName);

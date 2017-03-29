@@ -35,6 +35,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\mmk\debug\modules.h" />
+    <ClInclude Include="include\mmk\debug\modules.hpp" />
     <ClInclude Include="include\mmk\debug\stack.h" />
     <ClInclude Include="include\mmk\debug\stack.hpp" />
     <ClInclude Include="src\assert.hpp" />
@@ -67,6 +69,9 @@
     <ClCompile Include="src\lock_cpp11.cpp" />
     <ClCompile Include="src\lock_pthreads.cpp" />
     <ClCompile Include="src\elf.reader.cpp" />
+    <ClCompile Include="src\modules_dbghelp.cpp" />
+    <ClCompile Include="src\modules_noop.cpp" />
+    <ClCompile Include="src\modules_procmap.cpp" />
     <ClCompile Include="src\searchPaths.cpp" />
     <ClCompile Include="src\stack_dbghelp.cpp" />
     <ClCompile Include="src\dbgHelpContext_baseType.cpp" />

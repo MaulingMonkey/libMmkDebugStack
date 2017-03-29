@@ -13,9 +13,10 @@
    limitations under the License.
 */
 
-#include <mmk/debug/stack.h> // mmkDebugStackCurrentThread etc.
-#include <stdio.h>           // printf
-#include <stddef.h>          // ptrdiff_t
+#include <mmk/debug/stack.h>   // stackCurrentThread etc.
+#include <mmk/debug/modules.h> // modulesLoaded etc.
+#include <stdio.h>             // printf
+#include <stddef.h>            // ptrdiff_t
 
 
 
@@ -95,6 +96,13 @@ int main()
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-variable" // error: unused variable 'aWChar' [-Werror=unused-variable]
 #endif
+
+	printf("Modules:\n");
+	mmk::debug::modulesLoaded( mmkDebugModulesResolveAll, [](const mmk::debug::module& module){
+		printf("    %-40s  ver=%-16s  path=%-80s\n", module.name, module.version, module.path);
+		return true;
+	});
+	printf("\n");
 
 	char                aChar      = 'A';
 	wchar_t             aWChar     = L'A';

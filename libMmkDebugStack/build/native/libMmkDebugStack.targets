@@ -52,21 +52,29 @@
   <ItemDefinitionGroup Condition="'$(MmkDebugStackLink)'=='LinkWindowsX86v140'">
     <Link>
       <AdditionalLibraryDirectories>$(MSBuildThisFileDirectory)lib\x86\v140\$(MmkDebugStackConfig);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>dbghelp.lib;libMmkDebugStack.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>dbghelp.lib;version.lib;libMmkDebugStack.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
       <AdditionalLibraryDirectories>$(MSBuildThisFileDirectory)lib\x86\v140\$(MmkDebugStackConfig);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>dbghelp.lib;libMmkDebugStack.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>dbghelp.lib;version.lib;libMmkDebugStack.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(MmkDebugStackLink)'=='LinkWindowsX64v140'">
     <Link>
       <AdditionalLibraryDirectories>$(MSBuildThisFileDirectory)lib\x64\v140\$(MmkDebugStackConfig);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>dbghelp.lib;libMmkDebugStack.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>dbghelp.lib;version.lib;libMmkDebugStack.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
       <AdditionalLibraryDirectories>$(MSBuildThisFileDirectory)lib\x64\v140\$(MmkDebugStackConfig);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>dbghelp.lib;libMmkDebugStack.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>dbghelp.lib;version.lib;libMmkDebugStack.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(MmkDebugStackLink)'=='SrcDbghelp'">
+    <Link>
+      <AdditionalDependencies>dbghelp.lib;version.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>dbghelp.lib;version.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(MmkDebugStackLink)'=='LinkMsAndroidArmClang36'">
