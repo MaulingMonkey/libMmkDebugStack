@@ -3,13 +3,16 @@
   <PropertyGroup>
     <OutDir>$(SolutionDir)bin\$(ArchAbi)\$(ToolchainIdentifier)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)obj\$(ProjectName)\$(ArchAbi)\$(ToolchainIdentifier)\$(Configuration)\</IntDir>
+    <FastDeploy>false</FastDeploy>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <CppLanguageStandard>gnu++11</CppLanguageStandard>
+      <CppLanguageStandard>c++11</CppLanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)\libMmkDebugStack\include;$(SolutionDir)\libMmkDebugStack\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
       <Warnings>AllWarnings</Warnings>
       <WarningsAsErrors>true</WarningsAsErrors>
+      <EchoCommandLines>true</EchoCommandLines>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)\libMmkDebugStack\build\native\lib\$(ArchAbi)\$(ToolchainIdentifier)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>

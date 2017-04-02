@@ -12,10 +12,6 @@
       <Configuration>Release</Configuration>
       <Platform>Tegra-Android</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Shipping|Tegra-Android">
-      <Configuration>Shipping</Configuration>
-      <Platform>Tegra-Android</Platform>
-    </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F3E7E113-8377-485F-A976-930BC9487C4D}</ProjectGuid>
@@ -29,9 +25,6 @@
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|Tegra-Android'">
     <AndroidTargetAPI>android-15</AndroidTargetAPI>
   </PropertyGroup>
-  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Shipping|Tegra-Android'">
-    <AndroidTargetAPI>android-15</AndroidTargetAPI>
-  </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
@@ -41,19 +34,7 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Tegra-Android'">
     <Import Project="mmkNvidiaCodeworksTest.props" />
   </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Shipping|Tegra-Android'">
-    <Import Project="mmkNvidiaCodeworksTest.props" />
-  </ImportGroup>
   <PropertyGroup Label="UserMacros">
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Tegra-Android'">
-    <FastDeploy>false</FastDeploy>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Tegra-Android'">
-    <FastDeploy>false</FastDeploy>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Shipping|Tegra-Android'">
-    <FastDeploy>false</FastDeploy>
   </PropertyGroup>
   <ItemGroup>
     <AndroidBuild Include="AndroidManifest.xml" />

@@ -13,7 +13,7 @@
    limitations under the License.
 */
 
-#if defined(MMK_DEBUG_STACK_USE_DBGHELP) || defined(MMK_DEBUG_STACK_USE_UNWIND)
+#if defined(MMK_DEBUG_STACK_USE_DBGHELP) || defined(MMK_DEBUG_STACK_USE_DLADDR)
 void stack_fallback_exports_nothing() {} // Supress linker warning
 #else
 

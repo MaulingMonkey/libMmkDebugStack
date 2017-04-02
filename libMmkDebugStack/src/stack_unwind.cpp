@@ -13,8 +13,8 @@
    limitations under the License.
 */
 
-#ifndef MMK_DEBUG_STACK_USE_UNWIND
-void stack_unwind_exports_nothing() {} // Supress linker warning
+#ifndef MMK_DEBUG_STACK_USE_DLADDR
+void stack_dladdr_exports_nothing() {} // Supress linker warning
 #else
 
 #include <mmk/debug/stack.h>
@@ -47,7 +47,8 @@ namespace
 
 	bool reportFrame(context& c, uintptr_t ip);
 
-#ifndef __clang__ // _Unwind_Backtrace fails to invoke doUnwind on clang at all, we'll use __builtin_return_address instead.
+#ifdef MMK_DEBUG_STACK_USE_UNWIND
+	// Note: _Unwind_Backtrace fails to invoke doUnwind on clang at all, we'll use __builtin_return_address instead.
 	_Unwind_Reason_Code doUnwind(_Unwind_Context* uwContext, void* pOurContext)
 	{
 		if (!ZMMK_ASSERT(pOurContext, "Expected pOurContext")) return _URC_FAILURE;
@@ -201,7 +202,7 @@ void mmkDebugStackCurrentThread(
 
 	context ourContext = { flags, framesToSkip, maxFrames, userData, onFunction, onVariable, fileHint, lineHint, funcHint };
 
-#ifdef __clang__ // _Unwind_Backtrace fails to invoke doUnwind on clang at all, so use __builtin_return_address instead.
+#ifdef MMK_DEBUG_STACK_USE_BUILTIN_RETURN_ADDRESS // _Unwind_Backtrace fails to invoke doUnwind on clang at all, so use __builtin_return_address instead.
 #define FRAME(n) if (n >= framesToSkip) {                                                                        \
     if (maxFrames-- == 0) return;                                                                                \
     if (!reportFrame(ourContext, (uintptr_t)__builtin_extract_return_addr(__builtin_return_address(n)))) return; \
@@ -212,10 +213,13 @@ void mmkDebugStackCurrentThread(
 #undef FRAME10
 #undef FRAME
 
-#else // While we can call __builtin_frame_address on GCC, it crashes!  So let's not do that.
+#elif defined MMK_DEBUG_STACK_USE_UNWIND // While we can call __builtin_frame_address on GCC, it crashes!  So let's not do that.
 	_Unwind_Reason_Code rc = _Unwind_Backtrace(&doUnwind, &ourContext);
 	(void)rc;
+
+#else
+#error Expected MMK_DEBUG_STACK_USE_  UNWIND or BUILTIN_RETURN_ADDRESS  to be used in conjunction with  MMK_DEBUG_STACK_USE_DLADDR
 #endif
 }
 
-#endif /* def MMK_DEBUG_STACK_USE_DBGHELP */
+#endif /* def MMK_DEBUG_STACK_USE_DLADDR */
