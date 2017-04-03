@@ -76,7 +76,7 @@
     <ClCompile Include="src\stack_dbghelp.cpp" />
     <ClCompile Include="src\dbgHelpContext_baseType.cpp" />
     <ClCompile Include="src\stack_fallback.cpp" />
-    <ClCompile Include="src\stack_unwind.cpp" />
+    <ClCompile Include="src\stack_dladdr.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="build\native\libMmkDebugStack-propertiesui.xml">
