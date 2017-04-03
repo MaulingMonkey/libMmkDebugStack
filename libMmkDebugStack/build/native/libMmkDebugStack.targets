@@ -36,9 +36,8 @@
       <ExcludedFromBuild Condition="('$(MmkDebugStackLink)'!='SrcDbghelp') And ('$(MmkDebugStackLink)'!='SrcUnwind') And ('$(MmkDebugStackLink)'!='SrcFallback')">true</ExcludedFromBuild>
       <PreprocessorDefinitions Condition="'$(MmkDebugStackLink)'=='SrcDbghelp'">MMK_DEBUG_STACK_USE_DBGHELP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(MmkDebugStackLink)'=='SrcUnwind' ">MMK_DEBUG_STACK_USE_UNWIND;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)libMmkDebugStack_%(filename).o</ObjectFileName>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <InProject>false</InProject>
-      <Visible>false</Visible>
     </ClCompile>
   </ItemGroup>
 
