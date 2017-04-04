@@ -74,16 +74,13 @@
     <None Include="build\native\libMmkDebugStack.targets">
       <Filter>build/native</Filter>
     </None>
-    <None Include="libMmkDebugStack.props">
+    <None Include="libMmkDebugStack-MsAndroid.props">
       <Filter>%28Build Config%29</Filter>
     </None>
-    <None Include="libMmkDebugStack-MSVC.props">
+    <None Include="libMmkDebugStack-Windows.props">
       <Filter>%28Build Config%29</Filter>
     </None>
-    <None Include="libMmkDebugStack-nVidiaCodeWorks.props">
-      <Filter>%28Build Config%29</Filter>
-    </None>
-    <None Include="libMmkDebugStack-Android.props">
+    <None Include="libMmkDebugStack-NvAndroid.props">
       <Filter>%28Build Config%29</Filter>
     </None>
   </ItemGroup>

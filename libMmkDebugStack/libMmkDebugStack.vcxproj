@@ -53,12 +53,11 @@
     <None Include="build\native\libMmkDebugStack.targets">
       <SubType>Designer</SubType>
     </None>
-    <None Include="libMmkDebugStack-Android.props">
+    <None Include="libMmkDebugStack-MsAndroid.props">
       <SubType>Designer</SubType>
     </None>
-    <None Include="libMmkDebugStack-MSVC.props" />
-    <None Include="libMmkDebugStack-nVidiaCodeWorks.props" />
-    <None Include="libMmkDebugStack.props" />
+    <None Include="libMmkDebugStack-Windows.props" />
+    <None Include="libMmkDebugStack-NvAndroid.props" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\dbgHelpContext_onFrameVar.cpp" />
@@ -146,35 +145,35 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="libMmkDebugStack-MSVC.props" />
+    <Import Project="libMmkDebugStack-Windows.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="libMmkDebugStack-MSVC.props" />
+    <Import Project="libMmkDebugStack-Windows.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="libMmkDebugStack-MSVC.props" />
+    <Import Project="libMmkDebugStack-Windows.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="libMmkDebugStack-MSVC.props" />
+    <Import Project="libMmkDebugStack-Windows.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|ARM-Android-NVIDIA'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="libMmkDebugStack-nVidiaCodeWorks.props" />
+    <Import Project="libMmkDebugStack-NvAndroid.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|ARM-Android-NVIDIA'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="libMmkDebugStack-nVidiaCodeWorks.props" />
+    <Import Project="libMmkDebugStack-NvAndroid.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="libMmkDebugStack-Android.props" />
+    <Import Project="libMmkDebugStack-MsAndroid.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="libMmkDebugStack-Android.props" />
+    <Import Project="libMmkDebugStack-MsAndroid.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
