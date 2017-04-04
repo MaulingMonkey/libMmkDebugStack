@@ -87,7 +87,7 @@ More examples:
 # Installation
 
 ## NuGet
-<strike>Add [libMmkDebugStack](https://www.nuget.org/packages/libMmkDebugStack/) to your project via nuget.  Done!</strike>  **Soon(tm)**
+Add [libMmkDebugStack](https://www.nuget.org/packages/libMmkDebugStack/) to your project via nuget.  Done!
 
 ## From Source (on Windows development machine)
 - Clone the repository
