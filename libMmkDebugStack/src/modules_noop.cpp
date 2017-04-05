@@ -13,7 +13,7 @@
    limitations under the License.
 */
 
-#if (defined MMK_DEBUG_STACK_USE_UNWIND || defined MMK_DEBUG_STACK_USE_DBGHELP)
+#if (defined MMK_DEBUG_STACK_USE_DLADDR || defined MMK_DEBUG_STACK_USE_DBGHELP)
 void modules_noop_exports_nothing() {} // Supress linker warning
 #else
 

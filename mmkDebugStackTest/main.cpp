@@ -13,6 +13,7 @@
    limitations under the License.
 */
 
+#include <mmk/test/unit.hpp>
 #include <mmk/debug/stack.h>   // stackCurrentThread etc.
 #include <mmk/debug/modules.h> // modulesLoaded etc.
 #include <stdio.h>             // printf
@@ -81,13 +82,13 @@ int traceVariable(void*, const mmkDebugStackVariable* v)
 
 // -------------- Demo using tracing macros --------------
 NO_INLINE void test_trace() { TRACE1(); TRACE2(); TRACE3(); }
-template < size_t N > struct recursive    { NO_INLINE static void test_trace() { recursive<N-1>::test_trace(); } };
-template <>           struct recursive<0> { NO_INLINE static void test_trace() { ::test_trace(); } };
+template < size_t N > struct recursive    { NO_INLINE static void call(void (*callback)()) { recursive<N-1>::call(callback); } };
+template <>           struct recursive<0> { NO_INLINE static void call(void (*callback)()) { (*callback)(); } };
 
 struct foo { int i; };
 typedef foo bar;
 
-int main()
+int main(int argc, char** argv)
 {
 #ifdef _MSC_VER
 #pragma warning(push)
@@ -138,5 +139,7 @@ int main()
 #pragma GCC diagnostic pop
 #endif
 
-	recursive<10>::test_trace();
+	recursive<10>::call(&test_trace);
+
+	return mmk::test::unit::run(argc, argv);
 }

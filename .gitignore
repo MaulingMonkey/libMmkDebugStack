@@ -8,4 +8,5 @@ Thumbs.db
 bin/
 obj/
 libMmkDebugStack/build/native/lib/
+packages/
 

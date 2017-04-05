@@ -13,7 +13,7 @@
    limitations under the License.
 */
 
-#ifndef MMK_DEBUG_STACK_USE_UNWIND
+#ifndef MMK_DEBUG_STACK_USE_DLADDR
 void modules_procmap_exports_nothing() {} // Supress linker warning
 #else
 

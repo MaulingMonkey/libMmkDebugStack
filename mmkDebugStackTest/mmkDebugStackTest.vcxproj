@@ -123,6 +123,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="modules.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\libMmkDebugStack\libMmkDebugStack.vcxproj">
@@ -134,7 +135,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="mmkDebugStackTest.props" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\libMmkUnitTest.0.0.0\build\native\libMmkUnitTest.targets" Condition="Exists('..\packages\libMmkUnitTest.0.0.0\build\native\libMmkUnitTest.targets')" />
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\libMmkUnitTest.0.0.0\build\native\libMmkUnitTest.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\libMmkUnitTest.0.0.0\build\native\libMmkUnitTest.targets'))" />
+  </Target>
 </Project>
