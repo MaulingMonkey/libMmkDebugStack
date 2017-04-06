@@ -3,6 +3,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="modules.cpp" />
+    <ClCompile Include="stacks.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="%28Build Config%29">

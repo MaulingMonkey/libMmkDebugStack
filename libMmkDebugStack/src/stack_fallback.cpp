@@ -57,6 +57,8 @@ void mmkDebugStackCurrentThread(
 	(void)maxFrames;
 	(void)onVariable;
 
+	if (!funcHint && !fileHint && !lineHint) return; // The only frame we could possibly return is the fake hint based one, and no hint was given.
+
 	const char* const noFuncFile     = (flags & mmkDebugStackResolveNullMissing) ? NULL : "<unknown>";
 	const char* const noFuncName     = (flags & mmkDebugStackResolveNullMissing) ? NULL : "<unknown>";
 	const char* const noFuncModule   = (flags & mmkDebugStackResolveNullMissing) ? NULL : "<unknown>";

@@ -124,6 +124,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="modules.cpp" />
+    <ClCompile Include="stacks.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\libMmkDebugStack\libMmkDebugStack.vcxproj">

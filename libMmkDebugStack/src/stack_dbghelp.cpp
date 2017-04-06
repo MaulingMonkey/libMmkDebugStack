@@ -118,7 +118,7 @@ void mmkDebugStackCurrentThread(
 			const DWORD getSymLineErr = SymGetLineFromAddr64(c.process, reinterpret_cast<size_t>(instruction), &c.functionLineDisplacement, &c.functionLine) ? 0 : GetLastError();
 			func.file = getSymLineErr ? noFuncName : c.functionLine.FileName;
 			func.line = getSymLineErr ? 0 : c.functionLine.LineNumber;
-			if (strcmp(func.file, __FILE__)==0) continue; // Skip this frame
+			if (func.file && strcmp(func.file, __FILE__)==0) continue; // Skip this frame
 		}
 
 		if (flags & mmkDebugStackResolveFuncModule) {
